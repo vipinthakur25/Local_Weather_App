@@ -30,6 +30,7 @@ class WeatherDetailFragment : Fragment() {
     private fun initView() {
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
         val rndPosition = (0..3).shuffled().last()
+        var kelvin = 273.15
         Toast.makeText(requireContext(), "$rndPosition", Toast.LENGTH_SHORT).show()
         viewModel.getWeatherDetailLiveData.observe(viewLifecycleOwner) {
 
@@ -38,10 +39,14 @@ class WeatherDetailFragment : Fragment() {
             binding.tvCity.text = it[rndPosition].cityName
             binding.tvTemperature.text = it[rndPosition].temperature.toString() + "\u2103"
             binding.tvTemp.text = it[rndPosition].temperature.toString() + "\u2103"
+            kelvin += it[rndPosition].temperature
             binding.tvWindSpeed.text = it[rndPosition].windSpeed.toString()
             binding.tvWind.text = it[rndPosition].windSpeed.toString()
+            binding.tvTemp.setOnClickListener { binding.tvTemp.text = "$kelvin K" }
 
         }
+
+
         viewModel.setWeatherListData()
     }
 

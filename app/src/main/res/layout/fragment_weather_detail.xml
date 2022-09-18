@@ -119,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/celcius"
+
                 android:textColor="@color/colorTextCaption" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
